@@ -10,9 +10,27 @@
     </parent>
     <groupId>com.a2r</groupId>
     <artifactId>chargily-spring-boot-starter</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>chargily-spring-boot-starter</name>
     <description>chargily-spring-boot-starter</description>
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Mohammed Benyamina</name>
+            <email>a.bendabiza@gmail.com</email>
+            <organization>a2r</organization>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:git@github.com:bendabizadam/chargily-epay-springboot.git</connection>
+        <developerConnection>scm:git:ssh://github.com:bendabizadam/chargily-epay-springboot.git</developerConnection>
+        <url>https://github.com/bendabizadam/chargily-epay-springboot/tree/main</url>
+    </scm>
     <properties>
         <java.version>17</java.version>
     </properties>
@@ -58,6 +76,21 @@
     </dependencies>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.sonatype.plugins</groupId>
+                    <artifactId>nexus-staging-maven-plugin</artifactId>
+                    <version>1.6.7</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <serverId>ossrh</serverId>
+                        <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                        <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -73,5 +106,14 @@
             </plugin>
         </plugins>
     </build>
-
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 </project>
