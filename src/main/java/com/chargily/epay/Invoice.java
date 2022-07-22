@@ -133,7 +133,19 @@ public class Invoice implements Serializable {
         this.comment = comment;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Invoice{" +
+                "client='" + client + '\'' +
+                ", client_email='" + client_email + '\'' +
+                ", invoice_number='" + invoice_number + '\'' +
+                ", amount=" + amount +
+                ", discount=" + discount +
+                ", back_url='" + back_url + '\'' +
+                ", webhook_url='" + webhook_url + '\'' +
+                ", mode=" + mode +
+                ", comment='" + comment + '\'' +
+                '}';
+    }
 }
 

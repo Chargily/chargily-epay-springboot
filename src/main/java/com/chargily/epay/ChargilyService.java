@@ -3,6 +3,9 @@ package com.chargily.epay;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.codec.digest.HmacAlgorithms;
+import org.apache.commons.codec.digest.HmacUtils;
 import org.hibernate.validator.constraintvalidation.HibernateConstraintValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.client.RestTemplate;
 
 import javax.validation.*;
+import javax.validation.constraints.NotNull;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -45,7 +49,7 @@ public class ChargilyService {
         }
     }
 
-    public ResponseEntity<String> createPayment( Invoice invoice , String APIKey) {
+    public ResponseEntity<ChargilyResponse> createPayment( Invoice invoice , String APIKey) {
 
         //validate invoice if it's invalid throw constraint violation exception
         validateInvoice(invoice);
@@ -63,11 +67,21 @@ public class ChargilyService {
             //create the request
             HttpEntity<String> entity = new HttpEntity<String>(invoiceJson,httpHeaders);
              //send the request and return the response
-         return this.restTemplate.postForEntity(URL, entity, String.class);
+         var response =  this.restTemplate.postForEntity(URL, entity, ChargilyResponse.class);
+
+         return response;
+
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+
+    public Boolean isSignatureValid(String signature , String secretKey , String responseData){
+        String responseHash = new HmacUtils(HmacAlgorithms.HMAC_SHA_256,secretKey).hmacHex(responseData);
+        return signature.equals(responseHash);
+
     }
 
 }
