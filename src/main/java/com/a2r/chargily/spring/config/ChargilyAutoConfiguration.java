@@ -22,7 +22,7 @@ public class ChargilyAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
-    public ChargilyConfig greeterConfig() {
+    public ChargilyConfig chargilyConfig() {
 
         String apikey = chargilyProperties.getApikey() == null
                 ? System.getProperty("apikey")
@@ -45,7 +45,7 @@ public class ChargilyAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
-    public ChargilyClient greeter(ChargilyConfig greetingConfig) {
-        return new ChargilyClient(greetingConfig);
+    public ChargilyClient chargilyClient(ChargilyConfig chargilyConfig) {
+        return new ChargilyClient(chargilyConfig);
     }
 }
