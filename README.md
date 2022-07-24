@@ -6,8 +6,6 @@
 
 
 Integrate ePayment gateway with Chargily easily.
-
-Integrate ePayment gateway with Chargily easily.
 - Currently support payment by **CIB / EDAHABIA** cards and soon by **Visa / Mastercard**
 - This is a **Spring Boot jar**, If you are using another programing language [Browse here](https://github.com/Chargily/) or look to [API documentation](https://github.com/Chargily/epay-gateway-php/blob/master/README_API.md)
 
