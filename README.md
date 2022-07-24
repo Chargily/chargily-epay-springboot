@@ -13,8 +13,9 @@ Integrate ePayment gateway with Chargily easily.
 
 
 # Requirements
-1. JDK 11 or higher versions.
-2. Get your API Key/Secret from [ePay by Chargily](https://epay.chargily.com.dz) dashboard for free
+1. JDK 11 or later.
+3. Spring Boot Version 2.5 or later
+4. Get your API Key/Secret from [ePay by Chargily](https://epay.chargily.com.dz) dashboard for free
 
 # Installation
 1. Via Maven (Recomended) 
@@ -66,7 +67,6 @@ if(chargilyService.isSignatureValid("signature","APISecretKey","ResponseData")){
     */
 }
 ```
-
 
 
 # Contribution tips
