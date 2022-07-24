@@ -53,7 +53,9 @@ private ChargilyService chargilyService;
 ```
 Start a payment
 ```java
-chargilyService.createPayment(invoiceObj,"APIKEY");
+
+ResponseEntity<ChargilyResponse> response = chargilyService.createPayment(invoiceObj,"APIKEY");
+response.getBody().getCheckout_url();
 ```
 Validate a signature
 ```java
