@@ -28,6 +28,7 @@ import java.util.Set;
 @Service
 public class ChargilyService {
 
+
     private final String URL = "https://epay.chargily.com.dz/api/invoice";
 
     //to sent htttp requests
@@ -42,7 +43,6 @@ public class ChargilyService {
 
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
-
         Set<ConstraintViolation<Invoice>> violations = validator.validate(invoice);
         if (!violations.isEmpty()) {
             throw new ConstraintViolationException(violations);
@@ -50,6 +50,8 @@ public class ChargilyService {
     }
 
     public ResponseEntity<ChargilyResponse> createPayment( Invoice invoice , String APIKey) {
+
+
 
         //validate invoice if it's invalid throw constraint violation exception
         validateInvoice(invoice);
@@ -77,11 +79,9 @@ public class ChargilyService {
         return null;
     }
 
-
     public Boolean isSignatureValid(String signature , String secretKey , String responseData){
         String responseHash = new HmacUtils(HmacAlgorithms.HMAC_SHA_256,secretKey).hmacHex(responseData);
         return signature.equals(responseHash);
-
     }
 
 }
