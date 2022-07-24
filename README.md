@@ -16,10 +16,10 @@ Integrate ePayment gateway with Chargily easily.
 4. Get your API Key/Secret from [ePay by Chargily](https://epay.chargily.com.dz) dashboard for free
 
 # Installation
-1. Via Maven (Recomended) \n
+1. Via Maven (Recomended)  
 it will be published into mvn central soon.
 
-2. Manually \n
+2. Manually  
 downlaod the jar file and add it as a library into your project
 [ePay by Chargily](https://drive.google.com/file/d/1q7oGl1JonunyD7dr6VHWO79KrKn8otPs/view?usp=sharing)
 
