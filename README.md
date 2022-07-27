@@ -6,11 +6,13 @@ Spring Boot Library for Chargily ePay Gateway
 
 # How to use
 
-To use this library, there are two ways to configure keys and secret
+To use this library add the jar to your project libraries (it will be added to maven when possible)
+
+There are two ways to configure keys and secrets:
 
 - #### By providing your own configuration class like this
 
-```
+```java
 import ChargilyEpayClientConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,7 +35,7 @@ import static ChargilyEpayConfigParams.*;
 
 - #### or simply adding by these properties on application.properties file
 
-```
+```properties
 chargily.epay.apikey=your_api_key
 chargily.epay.url=https://epay.chargily.com.dz
 chargily.epay.secret=your_secret
@@ -44,7 +46,7 @@ chargily.epay.secret=your_secret
 either by constructor or field injection like this (constructor injection is preferred, but I will use field injection
 just for demo)
 
-```
+```java
 public class MyService{
 @Autowired
 private ChargilyEpayClient client;
@@ -72,7 +74,7 @@ public void makePayment(){
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 //in case of success
             }
-        }););
-}
+        });
+    }
 }
 ```
