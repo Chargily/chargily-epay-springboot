@@ -32,9 +32,9 @@ import static ChargilyConfigParams.*;
 - #### or simply adding by these properties on application.properties file
 
 ```
-epay.chargily.apikey=your_api_key
-epay.chargily.url=https://epay.chargily.com.dz
-epay.chargily.secret=your_secret
+chargily.epay.apikey=your_api_key
+chargily.epay.url=https://epay.chargily.com.dz
+chargily.epay.secret=your_secret
 ```
 
 #### then to make a payment simply inject the ChargilyClient in your service
