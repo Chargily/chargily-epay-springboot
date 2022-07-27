@@ -2,6 +2,8 @@
 
 Spring Boot Library for Chargily ePay Gateway
 
+![Chargily ePay Gateway](https://raw.githubusercontent.com/Chargily/epay-gateway-php/main/assets/banner-1544x500.png "Chargily ePay Gateway")
+
 # How to use
 
 To use this library, there are two ways to configure keys and secret
@@ -45,7 +47,7 @@ just for demo)
 ```
 public class MyService{
 @Autowired
-private ChargilyClient client
+private ChargilyClient client;
 
 public void makePayment(){
     InvoiceModel invoice = new InvoiceModel(
@@ -63,12 +65,12 @@ public void makePayment(){
     client.makePayment(invoice, new Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                
+                //in case of failure
             }
 
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-
+                //in case of success
             }
         }););
 }
