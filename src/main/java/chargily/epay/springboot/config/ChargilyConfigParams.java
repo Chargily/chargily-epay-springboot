@@ -1,4 +1,4 @@
-package com.a2r.chargily.spring.config;
+package chargily.epay.springboot.config;
 
 public class ChargilyConfigParams {
     public static final String API_KEY = "apikey";

@@ -1,4 +1,4 @@
-package com.a2r.chargily.spring.config;
+package chargily.epay.springboot.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

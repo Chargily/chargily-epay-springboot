@@ -1,6 +1,6 @@
-package com.a2r.chargily.spring.model;
+package chargily.epay.springboot.model;
 
-import com.a2r.chargily.spring.enums.Mode;
+import chargily.epay.springboot.enums.Mode;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.hibernate.validator.constraints.URL;

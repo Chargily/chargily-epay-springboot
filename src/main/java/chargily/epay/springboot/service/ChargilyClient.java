@@ -1,7 +1,8 @@
-package com.a2r.chargily.spring.service;
+package chargily.epay.springboot.service;
 
-import com.a2r.chargily.spring.config.ChargilyConfig;
-import com.a2r.chargily.spring.model.InvoiceModel;
+import chargily.epay.springboot.config.ChargilyClientConfig;
+import chargily.epay.springboot.config.ChargilyConfigParams;
+import chargily.epay.springboot.model.InvoiceModel;
 import com.google.gson.Gson;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -13,16 +14,14 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
 
-import static com.a2r.chargily.spring.config.ChargilyConfigParams.*;
-
 @Validated
 public class ChargilyClient {
-    private final ChargilyConfig chargilyConfig;
+    private final ChargilyClientConfig chargilyClientConfig;
     private final OkHttpClient okHttpClient = new OkHttpClient();
     private final MediaType APPLICATION_JSON = MediaType.parse("application/json");
 
-    public ChargilyClient(ChargilyConfig chargilyConfig) {
-        this.chargilyConfig = chargilyConfig;
+    public ChargilyClient(ChargilyClientConfig chargilyClientConfig) {
+        this.chargilyClientConfig = chargilyClientConfig;
     }
 
     /**
@@ -35,8 +34,8 @@ public class ChargilyClient {
         String invoiceAsJson = gson.toJson(invoiceModel);
         RequestBody body = RequestBody.create(invoiceAsJson, APPLICATION_JSON);
         Request request = new Request.Builder()
-                .url(chargilyConfig.getProperty(BASE_URL) + "/api/invoice")
-                .addHeader("X-Authorization", chargilyConfig.getProperty(API_KEY))
+                .url(chargilyClientConfig.getProperty(ChargilyConfigParams.BASE_URL) + "/api/invoice")
+                .addHeader("X-Authorization", chargilyClientConfig.getProperty(ChargilyConfigParams.API_KEY))
                 .post(body)
                 .build();
 
@@ -50,7 +49,7 @@ public class ChargilyClient {
      * @return a boolean that represents the validity of the signature
      */
     public Boolean isSignatureValid(String signature, String responseData) {
-        String secretKey = chargilyConfig.getProperty(SECRET);
+        String secretKey = chargilyClientConfig.getProperty(ChargilyConfigParams.SECRET);
         String responseHash = new HmacUtils(HmacAlgorithms.HMAC_SHA_256, secretKey).hmacHex(responseData);
         return signature.equals(responseHash);
     }

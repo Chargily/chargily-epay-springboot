@@ -1,4 +1,4 @@
-package com.a2r.chargily.spring.enums;
+package chargily.epay.springboot.enums;
 
 public enum Mode {
     EDAHABIA,

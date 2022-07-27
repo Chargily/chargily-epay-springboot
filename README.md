@@ -9,22 +9,22 @@ To use this library, there are two ways to configure keys and secret
 - #### By providing your own configuration class like this
 
 ```
-import com.a2r.chargily.spring.config.ChargilyConfig;
+import ChargilyConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import static com.a2r.chargily.spring.config.ChargilyConfigParams.*;
+import static ChargilyConfigParams.*;
 
 @Configuration
     public class ChargilyConfiguration {
 
         @Bean
-        public ChargilyConfig configureChargily(){
-        ChargilyConfig chargilyConfig = new ChargilyConfig();
-        chargilyConfig.put(BASE_URL, "https://epay.chargily.com.dz");
-        chargilyConfig.put(API_KEY, "your_api_key");
-        chargilyConfig.put(SECRET, "your_secret");
-        return chargilyConfig;
+        public ChargilyClientConfig configureChargily(){
+        ChargilyClientConfig chargilyClientConfig = new ChargilyClientConfig();
+        chargilyClientConfig.put(BASE_URL, "https://epay.chargily.com.dz");
+        chargilyClientConfig.put(API_KEY, "your_api_key");
+        chargilyClientConfig.put(SECRET, "your_secret");
+        return chargilyClientConfig;
     }
 }
 ```
@@ -59,8 +59,18 @@ public void makePayment(){
                 Mode.CIB,
                 "a comment"
                 );
-    //handle response after you get it 
-    Response response = client.makePayment(invoice);
+    //handle response after you get it as a call back
+    client.makePayment(invoice, new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+
+            }
+        }););
 }
 }
 ```

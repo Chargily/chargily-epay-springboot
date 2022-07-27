@@ -1,8 +1,8 @@
-package com.a2r.chargily.spring.config;
+package chargily.epay.springboot.config;
 
-import static com.a2r.chargily.spring.config.ChargilyConfigParams.*;
+import static chargily.epay.springboot.config.ChargilyConfigParams.*;
 
-import com.a2r.chargily.spring.service.ChargilyClient;
+import chargily.epay.springboot.service.ChargilyClient;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -22,7 +22,7 @@ public class ChargilyAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
-    public ChargilyConfig chargilyConfig() {
+    public ChargilyClientConfig chargilyClientConfig() {
 
         String apikey = chargilyProperties.getApikey() == null
                 ? System.getProperty("apikey")
@@ -34,18 +34,18 @@ public class ChargilyAutoConfiguration {
                 ? System.getProperty("secret")
                 : chargilyProperties.getSecret();
 
-        ChargilyConfig chargilyConfig = new ChargilyConfig();
+        ChargilyClientConfig chargilyClientConfig = new ChargilyClientConfig();
 
-        chargilyConfig.put(API_KEY, apikey);
-        chargilyConfig.put(BASE_URL, chargilyURL);
-        chargilyConfig.put(SECRET, secret);
+        chargilyClientConfig.put(API_KEY, apikey);
+        chargilyClientConfig.put(BASE_URL, chargilyURL);
+        chargilyClientConfig.put(SECRET, secret);
 
-        return chargilyConfig;
+        return chargilyClientConfig;
     }
 
     @Bean
     @ConditionalOnMissingBean
-    public ChargilyClient chargilyClient(ChargilyConfig chargilyConfig) {
-        return new ChargilyClient(chargilyConfig);
+    public ChargilyClient chargilyClient(ChargilyClientConfig chargilyClientConfig) {
+        return new ChargilyClient(chargilyClientConfig);
     }
 }
