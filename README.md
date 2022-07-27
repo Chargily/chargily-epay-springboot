@@ -15,7 +15,7 @@ import ChargilyEpayClientConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import static ChargilyConfigParams.*;
+import static ChargilyEpayConfigParams.*;
 
 @Configuration
     public class ChargilyEpayConfiguration {
