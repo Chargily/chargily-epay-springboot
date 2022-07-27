@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @Data
 @ConfigurationProperties(prefix = "chargily.epay")
-public class ChargilyProperties {
+public class ChargilyEpayProperties {
     private String url;
     private String apikey;
     private String secret;

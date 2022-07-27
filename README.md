@@ -18,15 +18,15 @@ import org.springframework.context.annotation.Configuration;
 import static ChargilyConfigParams.*;
 
 @Configuration
-    public class ChargilyConfiguration {
+    public class ChargilyEpayConfiguration {
 
         @Bean
-        public ChargilyClientConfig configureChargily(){
-        ChargilyClientConfig chargilyClientConfig = new ChargilyClientConfig();
-        chargilyClientConfig.put(BASE_URL, "https://epay.chargily.com.dz");
-        chargilyClientConfig.put(API_KEY, "your_api_key");
-        chargilyClientConfig.put(SECRET, "your_secret");
-        return chargilyClientConfig;
+        public ChargilyEpayClientConfig configureChargily(){
+        ChargilyEpayClientConfig chargilyEpayClientConfig = new ChargilyEpayClientConfig();
+        chargilyEpayClientConfig.put(BASE_URL, "https://epay.chargily.com.dz");
+        chargilyEpayClientConfig.put(API_KEY, "your_api_key");
+        chargilyEpayClientConfig.put(SECRET, "your_secret");
+        return chargilyEpayClientConfig;
     }
 }
 ```
@@ -47,7 +47,7 @@ just for demo)
 ```
 public class MyService{
 @Autowired
-private ChargilyClient client;
+private ChargilyEpayClient client;
 
 public void makePayment(){
     InvoiceModel invoice = new InvoiceModel(
