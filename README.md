@@ -11,7 +11,7 @@ To use this library, there are two ways to configure keys and secret
 - #### By providing your own configuration class like this
 
 ```
-import ChargilyConfig;
+import ChargilyEpayClientConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
