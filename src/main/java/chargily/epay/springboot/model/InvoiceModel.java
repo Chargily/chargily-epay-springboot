@@ -1,15 +1,17 @@
 package chargily.epay.springboot.model;
 
 import chargily.epay.springboot.enums.Mode;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import org.hibernate.validator.constraints.URL;
 import org.jetbrains.annotations.NotNull;
 
-import jakarta.validation.constraints.*;
 import java.math.BigDecimal;
 
 @Data
+@Builder
 @AllArgsConstructor
 public class InvoiceModel {
     @NotNull
